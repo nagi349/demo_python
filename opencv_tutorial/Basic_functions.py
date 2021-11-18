@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+kernel=np.ones((5,5))
+img=cv2.imread('Eiffel_tower.jpeg')
+img_gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+img_blur=cv2.GaussianBlur(img_gray,(3,3),0)
+img_canny=cv2.Canny(img,150,200)
+img_dialate = cv2.dilate(img_canny,kernel,iterations=1)
+img_erosion= cv2.erode(img_dialate,kernel,iterations=1)
+cv2.imshow('original image',img)
+cv2.imshow('gray_scale',img_gray)
+cv2.imshow('Blurred image', img_blur)
+cv2.imshow('canny edge detector',img_canny)
+cv2.imshow('dialtaion',img_dialate)
+cv2.imshow('errosion',img_erosion)
+cv2.waitKey(0)
